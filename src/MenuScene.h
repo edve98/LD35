@@ -3,6 +3,8 @@
 
 
 #include "Scene.h"
+#include "HelpScene.h"
+#include "PlayScene.h"
 #include "Game.h"
 
 
@@ -10,9 +12,12 @@ class MenuScene : public Scene{
 	
 	private:
 		Game *game;
+		HelpScene *helpScene;
+		PlayScene *playScene;
+		int highlightedMenuItem = 0;
 	
 	public:
-		MenuScene(Game *game);
+		MenuScene(Game *gamep, HelpScene *helpScene, PlayScene *playScene);
 		void update();
 		void draw();
 	
