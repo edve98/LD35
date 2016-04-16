@@ -1,8 +1,9 @@
 #include "PlayScene.h"
 #include "Input.h"
+#include "Room.h"
 
 
-PlayScene::PlayScene(Game *game) : player(0, 0){
+PlayScene::PlayScene(Game *game) : player(0, 0) , room(80, 30, 3){
 	this->game = game;
 }
 
@@ -25,5 +26,6 @@ void PlayScene::update(){
 
 
 void PlayScene::draw(){
+	room.draw(game, true);
 	player.draw(game);
 }
