@@ -19,10 +19,10 @@ class Room{
 	
 	private:
 		// options for random gen
-		static const int minWidth = 50;
-		static const int maxWidth = 100;
-		static const int minHeight = 15;
-		static const int maxHeight = 20;
+		static const int minWidth = 20;
+		static const int maxWidth = 40;
+		static const int minHeight = 10;
+		static const int maxHeight = 25;
 		static const int minNewDoors = 0;
 		static const int maxNewDoors = 2;
 		static const int minEnemies = 1;
@@ -53,7 +53,7 @@ class Room{
 		void draw(Game *game, bool isCurrent);
 		bool enterDoor(Player player);
 		bool isColliding(int x, int y);
-		int isEnemy(int x, int y); // 0 if not, id if yes
+		int isEnemy(int x, int y); // 0 if not, id+1 if yes
 		bool notADoor(int x, int y);
 		void updateEnemies(Player *player);
 };

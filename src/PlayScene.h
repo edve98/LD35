@@ -15,6 +15,12 @@ class PlayScene : public Scene{
 		Player player;
 		Room *lastRoom = new  Room(-10, -10, -1);
 		Room *currentRoom = new  Room(-10, -10, -1);
+		bool playerMoved = false;
+		bool bulletIsMoving = false;
+		int bulletDirX = 0, bulletDirY = 0;
+		int bulletX, bulletY;
+		char bulletLooks = '?'; //TODO add jostShot bool to make enemies step after explosion?
+		int explosionState = 0;
 	
 	public:
 		bool cam = true;

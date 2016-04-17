@@ -261,7 +261,7 @@ bool Room::isColliding(int x, int y){
 
 int Room::isEnemy(int x, int y){
 	for(int i = 0; i < enemies; i++){
-		if(Enemies[i].x == x && Enemies[i].y == y) return i;
+		if(Enemies[i].x == x && Enemies[i].y == y) return i+1;
 	}
 	return 0;
 }
