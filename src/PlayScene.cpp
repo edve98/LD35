@@ -4,12 +4,13 @@
 #include "stdio.h"
 
 
-PlayScene::PlayScene(Game *game) : player(20, 20){
+PlayScene::PlayScene(Game *game) : player(55, 25){
 	this->game = game;
 }
 
 
 void PlayScene::update(){
+	
 	if(game->input.isButtonDown(Keyboard::UP_ARROW)){
 		player.y++;
 	}
@@ -22,6 +23,7 @@ void PlayScene::update(){
 	else if(game->input.isButtonDown(Keyboard::RIGHT_ARROW)){
 		player.x++;
 	}
+	
 	
 	if(currentRoom->enterDoor(player)){
 		Room *tempRoom = lastRoom;
@@ -39,6 +41,29 @@ void PlayScene::update(){
 
 
 void PlayScene::draw(){
+	
+	if(cam){ // canter camera on player
+		game->graphics.setCameraCoordinates(player.x - game->graphics.getTerminalSizeX() / 2, player.y - game->graphics.getTerminalSizeY() / 2);
+		cam = false;
+	}
+	
+	// align camera x
+	if(game->graphics.getTerminalSizeX() / 4 * 3 < player.x - game->graphics.getCameraX()){
+		game->graphics.updateCameraCoordinates(1, 0);
+	}
+	if(game->graphics.getTerminalSizeX() / 4 > player.x - game->graphics.getCameraX()){
+		game->graphics.updateCameraCoordinates(-1, 0);
+	}
+	
+	// align camera y
+	if(game->graphics.getTerminalSizeY() / 4 * 3 < player.y - game->graphics.getCameraY()){
+		game->graphics.updateCameraCoordinates(0, 1);
+	}
+	if(game->graphics.getTerminalSizeY() / 4 > player.y - game->graphics.getCameraY()){
+		game->graphics.updateCameraCoordinates(0, -1);
+	}
+	
+	
 	lastRoom->draw(game, false);
 	currentRoom->draw(game, true);
 	player.draw(game);

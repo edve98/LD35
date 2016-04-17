@@ -17,6 +17,7 @@ class PlayScene : public Scene{
 		Room *currentRoom = new  Room(-10, -10, -1);
 	
 	public:
+		bool cam = true;
 		PlayScene(Game *game);
 		void update();
 		void draw();
