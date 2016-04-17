@@ -13,7 +13,8 @@ class PlayScene : public Scene{
 	private:
 		Game *game;
 		Player player;
-		Room room;
+		Room *lastRoom = new  Room(-10, -10, -1);
+		Room *currentRoom = new  Room(-10, -10, -1);
 	
 	public:
 		PlayScene(Game *game);
