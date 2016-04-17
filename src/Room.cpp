@@ -160,7 +160,7 @@ bool Room::enterDoor(Player player){
 					//printf("still alive\n");
 					doorID = i;
 					changeFirstDoorTo(doorID);
-					doorDir = Doors[i].dir + 2;
+					doorDir = Doors[0].dir + 2;
 					if(doorDir > 3) doorDir -= 4;
 					return true;
 				}
@@ -171,7 +171,7 @@ bool Room::enterDoor(Player player){
 					//printf("still alive\n");
 					doorID = i;
 					changeFirstDoorTo(doorID);
-					doorDir = Doors[i].dir + 2;
+					doorDir = Doors[0].dir + 2;
 					if(doorDir > 3) doorDir -= 4;
 					return true;
 				}
@@ -182,7 +182,7 @@ bool Room::enterDoor(Player player){
 					//printf("still alive\n");
 					doorID = i;
 					changeFirstDoorTo(doorID);
-					doorDir = Doors[i].dir + 2;
+					doorDir = Doors[0].dir + 2;
 					if(doorDir > 3) doorDir -= 4;
 					return true;
 				}
@@ -193,7 +193,7 @@ bool Room::enterDoor(Player player){
 					//printf("still alive\n");
 					doorID = i;
 					changeFirstDoorTo(doorID);
-					doorDir = Doors[i].dir + 2;
+					doorDir = Doors[0].dir + 2;
 					if(doorDir > 3) doorDir -= 4;
 					return true;
 				}
