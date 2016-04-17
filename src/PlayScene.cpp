@@ -13,7 +13,7 @@ PlayScene::PlayScene(Game *game) : player(55, 25){
 
 void PlayScene::update(){
 	if(bulletIsMoving){
-		if(currentRoom->isColliding(bulletX + bulletDirX, bulletY + bulletDirY, 0)){ // explosion
+		if(currentRoom->isColliding(bulletX + bulletDirX, bulletY + bulletDirY, 0) || currentRoom->isColliding(bulletX, bulletY, 0)){ // explosion
 			explosionState++;
 			usleep(10000);
 			
@@ -27,6 +27,9 @@ void PlayScene::update(){
 				
 				if(currentRoom->isEnemy(bulletX + bulletDirX, bulletY + bulletDirY)){
 					currentRoom->Enemies[currentRoom->isEnemy(bulletX + bulletDirX, bulletY + bulletDirY)-1].health--;
+				}
+				if(currentRoom->isEnemy(bulletX, bulletY)){
+					currentRoom->Enemies[currentRoom->isEnemy(bulletX, bulletY)-1].health--;
 				}
 				
 				explosionState = 0;
