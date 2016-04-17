@@ -21,8 +21,6 @@ bool Room::isNearOtherDoor(int x, int y, int n){
 
 Room::Room(int entranceX, int entranceY, int direction){
 	
-	printf("somewhat alive10\n");
-	
 	srand(time(NULL));
 	width = rand() % (maxWidth + 1 - minWidth) + minWidth;
 	height = rand() % (maxHeight + 1 - minHeight) + minHeight;
@@ -85,7 +83,13 @@ Room::Room(int entranceX, int entranceY, int direction){
 				Doors[i].dir  = 0;
 			}
 			
+			int veryTemp = 0;
 			do{
+				if(veryTemp > 100){
+					i--;
+					continue;
+				}
+				veryTemp++;
 				temp = rand() % (x2 - x1) + x1;
 			} while(isNearOtherDoor(temp, Doors[i].y, i));
 			Doors[i].x = temp;
@@ -101,7 +105,13 @@ Room::Room(int entranceX, int entranceY, int direction){
 				Doors[i].dir  = 1;
 			}
 			
+			int veryTemp = 0;
 			do{
+				if(veryTemp > 100){
+					i--;
+					continue;
+				}
+				veryTemp++;
 				temp = rand() % (y2 - y1) + y1;
 			} while(isNearOtherDoor(Doors[i].x, temp, i));
 			Doors[i].y = temp;
