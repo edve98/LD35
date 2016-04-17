@@ -5,6 +5,7 @@
 #include "time.h"
 #include <stdio.h>
 #include "Player.h"
+#include "Enemy.h"
 
 
 bool Room::isNearOtherDoor(int x, int y, int n){
@@ -25,6 +26,7 @@ Room::Room(int entranceX, int entranceY, int direction){
 	width = rand() % (maxWidth + 1 - minWidth) + minWidth;
 	height = rand() % (maxHeight + 1 - minHeight) + minHeight;
 	newDoors = rand() % (maxNewDoors + 1 - minNewDoors) + minNewDoors;
+	enemies = rand() % (maxEnemies + 1 - minEnemies) + minEnemies;
 	
 	switch(direction){
 		
@@ -61,7 +63,8 @@ Room::Room(int entranceX, int entranceY, int direction){
 			y1 = 20;
 			x2 = 60;
 			y2 = 30;
-			newDoors = 1;
+			newDoors = 3;
+			enemies = 0;
 			break;
 	}
 	
@@ -118,7 +121,26 @@ Room::Room(int entranceX, int entranceY, int direction){
 		}
 	}
 	
-	printf("x1=%d y1=%d x2=%d y2=%d width=%d height=%d\n", x1, y1, x2, y2, width, height);
+	//enemy spawning
+	for(int i = 0; i < enemies; i++){
+		int newX = rand() % ( (x2 - 2) + 1 - (x1 + 2) ) + (x1 + 2);
+		int newY = rand() % ( (y2 - 1) + 1 - (y1 + 1) ) + (y1 + 1);
+		printf("I is here @ %d %d\n", newX, newY);
+		if(isColliding(newX, newY)){
+			printf("I is bad\n");
+			i--;
+			continue;
+		}
+		else{
+			Enemies[i].x = newX;
+			Enemies[i].y = newY;
+			Enemies[i].totallyNotConstructor(1, 1);
+		}
+	}
+	
+	
+	printf("Enemy count: %d\n", enemies);
+	//printf("x1=%d y1=%d x2=%d y2=%d width=%d height=%d\n", x1, y1, x2, y2, width, height);
 }
 
 
@@ -142,6 +164,10 @@ void Room::draw(Game *game, bool isCurrent){
 			for(int y = y1; y < y2+1; y++){
 				game->graphics.addToScreen(x, y, ".");
 			}
+		}
+		
+		for(int i = 0; i < enemies; i++){
+			game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "O");
 		}
 	}
 	else{
@@ -228,7 +254,16 @@ bool Room::isColliding(int x, int y){
 	else if( x == x2+1 && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
 	else if( (x > x1-1 && x < x2+1) && y == y1-1 && notADoor(x, y)) return true;
 	else if( x == x1-1  && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
+	else if(isEnemy(x, y)) return true;
 	else return false;
+}
+
+
+int Room::isEnemy(int x, int y){
+	for(int i = 0; i < enemies; i++){
+		if(Enemies[i].x == x && Enemies[i].y == y) return i;
+	}
+	return 0;
 }
 
 
@@ -239,4 +274,11 @@ bool Room::notADoor(int x, int y){
 		}
 	}
 	return true;
+}
+
+
+void Room::updateEnemies(Player *player){
+	for(int i = 0; i < enemies; i++){
+		Enemies[i].step(player);
+	}
 }

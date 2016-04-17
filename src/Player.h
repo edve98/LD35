@@ -8,12 +8,9 @@
 
 class Player{
 	
-	private:
-		int maxHealth = 10;
-	
 	public:
 		int x, y;
-		int health = maxHealth;
+		int health = 10;
 		
 		Player(int x, int y);
 		void draw(Game *game);

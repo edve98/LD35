@@ -38,6 +38,8 @@ void PlayScene::update(){
 			currentRoom = tempRoom;
 		}
 	}
+	
+	currentRoom->updateEnemies(&player);
 }
 
 

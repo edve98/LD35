@@ -6,6 +6,7 @@
 #include "Graphics.h"
 #include "vector"
 #include "Player.h"
+#include "Enemy.h"
 
 
 struct Door{
@@ -18,17 +19,20 @@ class Room{
 	
 	private:
 		// options for random gen
-		static const int minWidth = 20;
-		static const int maxWidth = 40;
-		static const int minHeight = 5;
-		static const int maxHeight = 10;
+		static const int minWidth = 50;
+		static const int maxWidth = 100;
+		static const int minHeight = 15;
+		static const int maxHeight = 20;
 		static const int minNewDoors = 0;
 		static const int maxNewDoors = 2;
+		static const int minEnemies = 1;
+		static const int maxEnemies = 3;
 		
 		// generated variables for this room
 		int width;
 		int height;
 		int newDoors;
+		int enemies;
 		
 		bool isNearOtherDoor(int x, int y, int n);
 		void changeFirstDoorTo(int newFirstDoor);
@@ -36,6 +40,7 @@ class Room{
 	public:
 		// this room
 		Door Doors[maxNewDoors + 1];
+		Enemy *Enemies = new Enemy[maxEnemies];
 		int x1, y1;
 		int x2, y2;
 		
@@ -48,7 +53,9 @@ class Room{
 		void draw(Game *game, bool isCurrent);
 		bool enterDoor(Player player);
 		bool isColliding(int x, int y);
+		int isEnemy(int x, int y); // 0 if not, id if yes
 		bool notADoor(int x, int y);
+		void updateEnemies(Player *player);
 };
 
 #endif
