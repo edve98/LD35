@@ -11,20 +11,37 @@ PlayScene::PlayScene(Game *game) : player(55, 25){
 
 
 void PlayScene::update(){
+	bool playerMoved = false;
 	
 	if(game->input.isButtonDown(Keyboard::UP_ARROW)){
-		if(!currentRoom->isColliding(player.x, player.y+1)) player.y++;
+		if(!currentRoom->isColliding(player.x, player.y+1)){
+			player.y++;
+			playerMoved = true;
+		}
 	}
 	else if(game->input.isButtonDown(Keyboard::DOWN_ARROW)){
-		if(!currentRoom->isColliding(player.x, player.y-1)) player.y--;
+		if(!currentRoom->isColliding(player.x, player.y-1)){
+			player.y--;
+			playerMoved = true;
+		}
 	}
 	else if(game->input.isButtonDown(Keyboard::LEFT_ARROW)){
-		if(!currentRoom->isColliding(player.x-1, player.y)) player.x--;
+		if(!currentRoom->isColliding(player.x-1, player.y)){
+			player.x--;
+			playerMoved = true;
+		}
 	}
 	else if(game->input.isButtonDown(Keyboard::RIGHT_ARROW)){
-		if(!currentRoom->isColliding(player.x+1, player.y)) player.x++;
+		if(!currentRoom->isColliding(player.x+1, player.y)){
+			player.x++;
+			playerMoved = true;
+		}
 	}
 	
+	if(playerMoved){
+		printf("Call update\n");
+		currentRoom->updateEnemies(&player);
+	}
 	
 	if(currentRoom->enterDoor(player)){
 		Room *tempRoom = lastRoom;
@@ -38,8 +55,6 @@ void PlayScene::update(){
 			currentRoom = tempRoom;
 		}
 	}
-	
-	currentRoom->updateEnemies(&player);
 }
 
 

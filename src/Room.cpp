@@ -278,6 +278,7 @@ bool Room::notADoor(int x, int y){
 
 
 void Room::updateEnemies(Player *player){
+	printf("Do update\n");
 	for(int i = 0; i < enemies; i++){
 		Enemies[i].step(player);
 	}
