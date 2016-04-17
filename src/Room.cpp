@@ -167,7 +167,8 @@ void Room::draw(Game *game, bool isCurrent){
 		}
 		
 		for(int i = 0; i < enemies; i++){
-			game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "O");
+			if(Enemies[i].health > 0) game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "O");
+			else game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "_");
 		}
 	}
 	else{
@@ -261,7 +262,7 @@ bool Room::isColliding(int x, int y){
 
 int Room::isEnemy(int x, int y){
 	for(int i = 0; i < enemies; i++){
-		if(Enemies[i].x == x && Enemies[i].y == y) return i+1;
+		if(Enemies[i].x == x && Enemies[i].y == y && Enemies[i].health > 0) return i+1;
 	}
 	return 0;
 }
@@ -280,6 +281,6 @@ bool Room::notADoor(int x, int y){
 void Room::updateEnemies(Player *player){
 	printf("Do update\n");
 	for(int i = 0; i < enemies; i++){
-		Enemies[i].step(player);
+		if(Enemies[i].health > 0) Enemies[i].step(player);
 	}
 }
