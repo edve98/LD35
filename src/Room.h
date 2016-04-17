@@ -53,6 +53,7 @@ class Room{
 		void draw(Game *game, bool isCurrent);
 		bool enterDoor(Player player);
 		bool isColliding(int x, int y);
+		bool isColliding(int x, int y, int devnull); // will collide with doors
 		int isEnemy(int x, int y); // 0 if not, id+1 if yes
 		bool notADoor(int x, int y);
 		void updateEnemies(Player *player);

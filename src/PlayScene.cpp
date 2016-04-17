@@ -13,7 +13,7 @@ PlayScene::PlayScene(Game *game) : player(55, 25){
 
 void PlayScene::update(){
 	if(bulletIsMoving){ // TODO: flush input after explosion
-		if(currentRoom->isColliding(bulletX + bulletDirX, bulletY + bulletDirY)){ // explosion
+		if(currentRoom->isColliding(bulletX + bulletDirX, bulletY + bulletDirY, 0)){ // explosion
 			explosionState++;
 			usleep(10000);
 			

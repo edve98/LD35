@@ -260,6 +260,16 @@ bool Room::isColliding(int x, int y){
 }
 
 
+bool Room::isColliding(int x, int y, int devnull){
+	if( (x > x1-1 && x < x2+1) && y == y2+1) return true;
+	else if( x == x2+1 && (y > y1-1 && y < y2+1)) return true;
+	else if( (x > x1-1 && x < x2+1) && y == y1-1) return true;
+	else if( x == x1-1  && (y > y1-1 && y < y2+1)) return true;
+	else if(isEnemy(x, y)) return true;
+	else return false;
+}
+
+
 int Room::isEnemy(int x, int y){
 	for(int i = 0; i < enemies; i++){
 		if(Enemies[i].x == x && Enemies[i].y == y && Enemies[i].health > 0) return i+1;
