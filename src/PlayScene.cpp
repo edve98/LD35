@@ -2,6 +2,7 @@
 #include "Input.h"
 #include "Room.h"
 #include "stdio.h"
+#include "string.h"
 
 
 PlayScene::PlayScene(Game *game) : player(55, 25){
@@ -63,8 +64,19 @@ void PlayScene::draw(){
 		game->graphics.updateCameraCoordinates(0, -1);
 	}
 	
-	
+	// map
 	lastRoom->draw(game, false);
 	currentRoom->draw(game, true);
+	
+	// player
 	player.draw(game);
+	
+	// health
+	game->graphics.addToScreen(game->graphics.getCameraX(), game->graphics.getCameraY(), "Your health: ");
+	game->graphics.setFormat(Format::BACKGROUND_RED);
+	for(int i = 0; i < player.health; i++){
+		if(i % 2 == 0) game->graphics.addToScreen(game->graphics.getCameraX() + 13 + i, game->graphics.getCameraY(), ".");
+		else game->graphics.addToScreen(game->graphics.getCameraX() + 13 + i, game->graphics.getCameraY(), "`");
+	}
+	game->graphics.unsetFormat(Format::BACKGROUND_RED);
 }

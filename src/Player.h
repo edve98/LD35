@@ -9,7 +9,7 @@
 class Player{
 	
 	private:
-		int maxHealth = 100;
+		int maxHealth = 10;
 	
 	public:
 		int x, y;
