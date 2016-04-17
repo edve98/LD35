@@ -31,6 +31,7 @@ class PlayScene : public Scene{
 		char bulletLooks = '?'; //TODO add jostShot bool to make enemies step after explosion?
 		int explosionState = 0;
 		bool loadLose = false;
+		int score = 0;
 	
 	public:
 		bool cam = true;

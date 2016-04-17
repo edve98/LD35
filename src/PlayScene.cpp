@@ -32,9 +32,11 @@ void PlayScene::update(){
 				
 				if(currentRoom->isEnemy(bulletX + bulletDirX, bulletY + bulletDirY)){
 					currentRoom->Enemies[currentRoom->isEnemy(bulletX + bulletDirX, bulletY + bulletDirY)-1].health--;
+					score++;
 				}
 				if(currentRoom->isEnemy(bulletX, bulletY)){
 					currentRoom->Enemies[currentRoom->isEnemy(bulletX, bulletY)-1].health--;
+					score++;
 				}
 				
 				explosionState = 0;
@@ -162,6 +164,8 @@ void PlayScene::update(){
 	if(loadLose){ // death
 		// TODO: score
 		usleep(2000000);
+		loseScene->scoreDisplay = score;
+		loseScene->newOpen();
 		game->setScene(loseScene);
 	}
 	
