@@ -1,15 +1,28 @@
+class MenuScene;
+class HelpScene;
+class PlayScene;
+class LoseScene;
+class WinScene;
+
 #include "Game.h"
 #include "MenuScene.h"
 #include "HelpScene.h"
 #include "PlayScene.h"
+#include "LoseScene.h"
+#include "WinScene.h"
 
 
 int main(){
 	Game game;
 	
 	HelpScene helpScene(&game);
-	PlayScene playScene(&game);
+	LoseScene loseScene(&game);
+	WinScene winScene(&game);
+	PlayScene playScene(&game, &loseScene, &winScene);
   MenuScene menuScene(&game, &helpScene, &playScene);
+	
+	loseScene.menuScene = &menuScene;
+	winScene.menuScene = &menuScene;
 	
   game.setScene(&menuScene);
   game.loop();

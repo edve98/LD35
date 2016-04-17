@@ -4,10 +4,15 @@
 #include "stdio.h"
 #include "string.h"
 #include <unistd.h>
+#include "LoseScene.h"
+#include "HelpScene.h"
+#include "WinScene.h"
 
 
-PlayScene::PlayScene(Game *game) : player(55, 25){
+PlayScene::PlayScene(Game *game, LoseScene *loseScene, WinScene *winScene) : player(55, 25){
 	this->game = game;
+	this->loseScene = loseScene;
+	this->winScene = winScene;
 }
 
 
@@ -153,6 +158,17 @@ void PlayScene::update(){
 		
 		playerMoved = false;
 	}
+	
+	if(loadLose){ // death
+		// TODO: score
+		usleep(2000000);
+		game->setScene(loseScene);
+	}
+	
+	/*if(player.health < 1){ // win
+		// TODO: score
+		game->setScene();
+	}*/
 }
 
 
@@ -205,5 +221,15 @@ void PlayScene::draw(){
 		
 		case 2:
 			break;
+	}
+	
+	
+	if(player.health < 1){ // death
+		game->graphics.setFormat(Format::NEGATIVE);
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +1, "              ");
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2   , " You are dead ");
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 -1, "              ");
+		game->graphics.unsetFormat(Format::NEGATIVE);
+		loadLose = true;
 	}
 }

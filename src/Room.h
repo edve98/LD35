@@ -19,14 +19,14 @@ class Room{
 	
 	private:
 		// options for random gen
-		static const int minWidth = 20;
-		static const int maxWidth = 40;
-		static const int minHeight = 10;
-		static const int maxHeight = 25;
+		static const int minWidth = 15;
+		static const int maxWidth = 35;
+		static const int minHeight = 5;
+		static const int maxHeight = 20;
 		static const int minNewDoors = 0;
 		static const int maxNewDoors = 2;
 		static const int minEnemies = 1;
-		static const int maxEnemies = 3;
+		static const int maxEnemies = 10;
 		
 		// generated variables for this room
 		int width;

@@ -8,6 +8,9 @@
 #include "Game.h"
 
 
+class PlayScene;
+
+
 class MenuScene : public Scene{
 	
 	private:
