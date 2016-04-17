@@ -12,16 +12,16 @@ PlayScene::PlayScene(Game *game) : player(55, 25){
 void PlayScene::update(){
 	
 	if(game->input.isButtonDown(Keyboard::UP_ARROW)){
-		player.y++;
+		if(!currentRoom->isColliding(player.x, player.y+1)) player.y++;
 	}
 	else if(game->input.isButtonDown(Keyboard::DOWN_ARROW)){
-		player.y--;
+		if(!currentRoom->isColliding(player.x, player.y-1)) player.y--;
 	}
 	else if(game->input.isButtonDown(Keyboard::LEFT_ARROW)){
-		player.x--;
+		if(!currentRoom->isColliding(player.x-1, player.y)) player.x--;
 	}
 	else if(game->input.isButtonDown(Keyboard::RIGHT_ARROW)){
-		player.x++;
+		if(!currentRoom->isColliding(player.x+1, player.y)) player.x++;
 	}
 	
 	

@@ -47,6 +47,8 @@ class Room{
 		Room(int entranceX, int entranceY, int direction);
 		void draw(Game *game, bool isCurrent);
 		bool enterDoor(Player player);
+		bool isColliding(int x, int y);
+		bool notADoor(int x, int y);
 };
 
 #endif

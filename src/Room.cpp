@@ -221,3 +221,22 @@ void Room::changeFirstDoorTo(int newFirstDoor){
 	Doors[0] = Doors[newFirstDoor];
 	Doors[newFirstDoor] = tempDoor;
 }
+
+
+bool Room::isColliding(int x, int y){
+	if( (x > x1-1 && x < x2+1) && y == y2+1 && notADoor(x, y)) return true;
+	else if( x == x2+1 && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
+	else if( (x > x1-1 && x < x2+1) && y == y1-1 && notADoor(x, y)) return true;
+	else if( x == x1-1  && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
+	else return false;
+}
+
+
+bool Room::notADoor(int x, int y){
+	for(int i = 0; i < newDoors+1; i++){
+		if(x == Doors[i].x && y == Doors[i].y){
+			return false;
+		}
+	}
+	return true;
+}
