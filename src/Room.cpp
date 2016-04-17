@@ -156,6 +156,11 @@ void Room::draw(Game *game, bool isCurrent){
 			game->graphics.addToScreen(x2+1, y, "|");
 		}
 		
+		game->graphics.addToScreen(x1-1, y1-1, ".");
+		game->graphics.addToScreen(x2+1, y1-1, ".");
+		game->graphics.addToScreen(x1-1, y2+1, ".");
+		game->graphics.addToScreen(x2+1, y2+1, ".");
+		
 		for(int i = 0; i < newDoors+1; i++){
 			game->graphics.addToScreen(Doors[i].x,Doors[i].y, "#");
 		}
@@ -172,12 +177,12 @@ void Room::draw(Game *game, bool isCurrent){
 		}
 	}
 	else{
-		for(int x = x1; x <= x2; x++){
+		for(int x = x1-1; x <= x2+1; x++){
 			game->graphics.addToScreen(x, y1-1, ".");
 			game->graphics.addToScreen(x, y2+1, ".");
 		}
 		
-		for(int y = y1; y <= y2; y++){
+		for(int y = y1-1; y <= y2+1; y++){
 			game->graphics.addToScreen(x1-1, y, ".");
 			game->graphics.addToScreen(x2+1, y, ".");
 		}
@@ -251,20 +256,20 @@ void Room::changeFirstDoorTo(int newFirstDoor){
 
 
 bool Room::isColliding(int x, int y){
-	if( (x > x1-1 && x < x2+1) && y == y2+1 && notADoor(x, y)) return true;
-	else if( x == x2+1 && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
-	else if( (x > x1-1 && x < x2+1) && y == y1-1 && notADoor(x, y)) return true;
-	else if( x == x1-1  && (y > y1-1 && y < y2+1) && notADoor(x, y)) return true;
+	if( (x > x1-2 && x < x2+2) && y == y2+1 && notADoor(x, y)) return true;
+	else if( x == x2+1 && (y > y1-2 && y < y2+2) && notADoor(x, y)) return true;
+	else if( (x > x1-2 && x < x2+2) && y == y1-1 && notADoor(x, y)) return true;
+	else if( x == x1-1  && (y > y1-2 && y < y2+2) && notADoor(x, y)) return true;
 	else if(isEnemy(x, y)) return true;
 	else return false;
 }
 
 
 bool Room::isColliding(int x, int y, int devnull){
-	if( (x > x1-1 && x < x2+1) && y == y2+1) return true;
-	else if( x == x2+1 && (y > y1-1 && y < y2+1)) return true;
-	else if( (x > x1-1 && x < x2+1) && y == y1-1) return true;
-	else if( x == x1-1  && (y > y1-1 && y < y2+1)) return true;
+	if( (x > x1-2 && x < x2+2) && y == y2+1) return true;
+	else if( x == x2+1 && (y > y1-2 && y < y2+2)) return true;
+	else if( (x > x1-2 && x < x2+2) && y == y1-1) return true;
+	else if( x == x1-1  && (y > y1-2 && y < y2+2)) return true;
 	else if(isEnemy(x, y)) return true;
 	else return false;
 }
