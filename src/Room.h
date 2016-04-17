@@ -49,6 +49,10 @@ class Room{
 		int doorDir;
 		bool newRoom;
 		
+		bool hasWin = false;
+		int winX, winY;
+		
+		
 		Room(int entranceX, int entranceY, int direction);
 		void draw(Game *game, bool isCurrent);
 		bool enterDoor(Player player);

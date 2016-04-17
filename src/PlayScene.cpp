@@ -162,17 +162,18 @@ void PlayScene::update(){
 	}
 	
 	if(loadLose){ // death
-		// TODO: score
-		usleep(2000000);
+		usleep(1500000);
 		loseScene->scoreDisplay = score;
 		loseScene->newOpen();
 		game->setScene(loseScene);
 	}
 	
-	/*if(player.health < 1){ // win
-		// TODO: score
-		game->setScene();
-	}*/
+	if(loadWin){ // win
+		usleep(1500000);
+		winScene->scoreDisplay = score;
+		winScene->newOpen();
+		game->setScene(winScene);
+	}
 }
 
 
@@ -235,5 +236,15 @@ void PlayScene::draw(){
 		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 -1, "              ");
 		game->graphics.unsetFormat(Format::NEGATIVE);
 		loadLose = true;
+	}
+	
+	
+	if(currentRoom->hasWin && player.x == currentRoom->winX && player.y == currentRoom->winY){ // win
+		game->graphics.setFormat(Format::NEGATIVE);
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-5, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +1, "          ");
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-5, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2   , " You won! ");
+		game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-5, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 -1, "          ");
+		game->graphics.unsetFormat(Format::NEGATIVE);
+		loadWin = true;
 	}
 }

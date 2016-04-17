@@ -121,6 +121,18 @@ Room::Room(int entranceX, int entranceY, int direction){
 		}
 	}
 	
+	
+	//win spawning
+	if(newDoors == 0){
+		int temp = rand() % 10; // 1 in a 10 chance
+		//if(temp == 0){
+			hasWin = true;
+			winX = rand() % ( (x2 - 2) + 1 - (x1 + 2) ) + (x1 + 2);
+			winY = rand() % ( (y2 - 1) + 1 - (y1 + 1) ) + (y1 + 1);
+			enemies = maxEnemies - (enemies/2);
+		//}
+	}
+	
 	//enemy spawning
 	for(int i = 0; i < enemies; i++){
 		int newX = rand() % ( (x2 - 2) + 1 - (x1 + 2) ) + (x1 + 2);
@@ -137,6 +149,8 @@ Room::Room(int entranceX, int entranceY, int direction){
 			Enemies[i].totallyNotConstructor(1, 1);
 		}
 	}
+	
+	
 	
 	
 	printf("Enemy count: %d\n", enemies);
@@ -175,6 +189,9 @@ void Room::draw(Game *game, bool isCurrent){
 			if(Enemies[i].health > 0) game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "O");
 			else game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "_");
 		}
+		
+		if(hasWin) game->graphics.addToScreen(winX, winY, "Y");
+		
 	}
 	else{
 		for(int x = x1-1; x <= x2+1; x++){
