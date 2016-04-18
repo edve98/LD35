@@ -18,8 +18,7 @@ int main(){
 	HelpScene helpScene(&game);
 	LoseScene loseScene(&game);
 	WinScene winScene(&game);
-	PlayScene playScene(&game, &loseScene, &winScene);
-  MenuScene menuScene(&game, &helpScene, &playScene);
+  MenuScene menuScene(&game, &helpScene, &loseScene, &winScene);
 	
 	loseScene.menuScene = &menuScene;
 	winScene.menuScene = &menuScene;

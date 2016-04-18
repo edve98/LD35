@@ -9,8 +9,8 @@
 #include "WinScene.h"
 
 
-PlayScene::PlayScene(Game *game, LoseScene *loseScene, WinScene *winScene) : player(55, 25){
-	this->game = game;
+PlayScene::PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene) : player(55, 25){
+	this->game = gamep;
 	this->loseScene = loseScene;
 	this->winScene = winScene;
 }

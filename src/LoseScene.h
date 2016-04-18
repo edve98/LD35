@@ -3,7 +3,6 @@
 
 
 #include "Scene.h"
-#include "MenuScene.h"
 #include "Game.h"
 
 
@@ -19,7 +18,7 @@ class LoseScene : public Scene{
 	public:
 		int scoreDisplay;
 		
-		MenuScene *menuScene;
+		Scene *menuScene;
 		LoseScene(Game *game);
 		void update();
 		void draw();

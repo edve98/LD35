@@ -1,16 +1,19 @@
 #include "MenuScene.h"
 #include "Input.h"
 #include "Graphics.h"
+#include "stdio.h"
 
 
-MenuScene::MenuScene(Game *game, HelpScene *helpScene, PlayScene *playScene){
-	this->game = game;
+MenuScene::MenuScene(Game *gamep, HelpScene *helpScene, LoseScene *loseScene, WinScene *winScene){
+	this->game = gamep;
 	this->helpScene = helpScene;
-	this->playScene = playScene;
+	this->loseScene = loseScene;
+	this->winScene = winScene;
 }
 
 
 void MenuScene::update(){
+	
 	if(game->input.isButtonDown(Keyboard::UP_ARROW) && highlightedMenuItem > 0){
 		highlightedMenuItem--;
 	}
@@ -20,6 +23,7 @@ void MenuScene::update(){
 	else if(game->input.isButtonDown(Keyboard::ENTER)){
 		switch(highlightedMenuItem){
 			case 0:
+				playScene = new PlayScene(game, loseScene, winScene); // that did it
 				game->setScene(playScene);
 				break;
 			case 1:

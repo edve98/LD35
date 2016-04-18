@@ -18,7 +18,7 @@ class WinScene : public Scene{
 
 	public:
 		int scoreDisplay;
-		MenuScene *menuScene;
+		Scene *menuScene;
 		WinScene(Game *game);
 		void update();
 		void draw();

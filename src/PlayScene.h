@@ -17,9 +17,6 @@ class LoseScene;
 class PlayScene : public Scene{
 	
 	private:
-		Game *game;
-		LoseScene *loseScene;
-		WinScene *winScene;
 		
 		Player player;
 		Room *lastRoom = new  Room(-10, -10, -1);
@@ -35,8 +32,12 @@ class PlayScene : public Scene{
 		int score = 0;
 	
 	public:
+		Game *game;
+		LoseScene *loseScene;
+		WinScene *winScene;
+		
 		bool cam = true;
-		PlayScene(Game *game, LoseScene *loseScene, WinScene *winScene);
+		PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene);
 		void update();
 		void draw();
 	

@@ -2,25 +2,30 @@
 #define MENUSCENE_H
 
 
+class LoseScene;
+class WinScene;
+
+
 #include "Scene.h"
 #include "HelpScene.h"
 #include "PlayScene.h"
+#include "LoseScene.h"
+#include "WinScene.h"
 #include "Game.h"
-
-
-class PlayScene;
 
 
 class MenuScene : public Scene{
 	
-	private:
+	public:
 		Game *game;
 		HelpScene *helpScene;
-		PlayScene *playScene;
+		LoseScene *loseScene;
+		WinScene *winScene;
+		
+		PlayScene *playScene = new PlayScene(game, loseScene, winScene);
 		int highlightedMenuItem = 0;
-	
-	public:
-		MenuScene(Game *gamep, HelpScene *helpScene, PlayScene *playScene);
+		
+		MenuScene(Game *gamep, HelpScene *helpScene, LoseScene *loseScene, WinScene *winScene);
 		void update();
 		void draw();
 	
