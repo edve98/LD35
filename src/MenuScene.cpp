@@ -43,7 +43,7 @@ void MenuScene::draw(){
 	
 	game->graphics.setFormat(Format::NEGATIVE);
 	game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +3, "              ");
-	game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +2, " SHIFT SYSTEM ");
+	game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +2, " SYSTEM SHIFT ");
 	game->graphics.addToScreen(game->graphics.getCameraX() + game->graphics.getTerminalSizeX()/2-7, game->graphics.getCameraY() + game->graphics.getTerminalSizeY()/2 +1, "              ");
 	game->graphics.unsetFormat(Format::NEGATIVE);
 	
