@@ -125,12 +125,12 @@ Room::Room(int entranceX, int entranceY, int direction){
 	//win spawning
 	if(newDoors == 0){
 		int temp = rand() % 10; // 1 in a 10 chance
-		//if(temp == 0){
+		if(temp == 0){
 			hasWin = true;
 			winX = rand() % ( (x2 - 2) + 1 - (x1 + 2) ) + (x1 + 2);
 			winY = rand() % ( (y2 - 1) + 1 - (y1 + 1) ) + (y1 + 1);
 			enemies = maxEnemies - (enemies/2);
-		//}
+		}
 	}
 	
 	//enemy spawning
@@ -186,8 +186,11 @@ void Room::draw(Game *game, bool isCurrent){
 		}
 		
 		for(int i = 0; i < enemies; i++){
+			if(Enemies[i].health < 1) game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "_");
+		}
+		
+		for(int i = 0; i < enemies; i++){
 			if(Enemies[i].health > 0) game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "O");
-			else game->graphics.addToScreen(Enemies[i].x, Enemies[i].y, "_");
 		}
 		
 		if(hasWin) game->graphics.addToScreen(winX, winY, "Y");
