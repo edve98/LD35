@@ -9,10 +9,11 @@
 #include "WinScene.h"
 
 
-PlayScene::PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene) : player(55, 25){
+PlayScene::PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene, HelpScene *helpScene) : player(55, 25){
 	this->game = gamep;
 	this->loseScene = loseScene;
 	this->winScene = winScene;
+	this->helpScene = helpScene;
 }
 
 
@@ -81,6 +82,16 @@ void PlayScene::update(){
 				player.x++;
 				playerMoved = true;
 			}
+		}
+		//menu / quit
+		else if(game->input.isButtonDown(Keyboard::Q)){
+			loseScene->scoreDisplay = score;
+			loseScene->newOpen();
+			game->setScene(loseScene);
+		}
+		else if(game->input.isButtonDown(Keyboard::H)){
+			helpScene->sceneToReturnTo = this;
+			game->setScene(helpScene);
 		}
 		// shooting
 		else if(game->input.isButtonDown(Keyboard::NUM_8)){

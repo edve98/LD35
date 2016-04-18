@@ -35,9 +35,10 @@ class PlayScene : public Scene{
 		Game *game;
 		LoseScene *loseScene;
 		WinScene *winScene;
+		HelpScene *helpScene;
 		
 		bool cam = true;
-		PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene);
+		PlayScene(Game *gamep, LoseScene *loseScene, WinScene *winScene, HelpScene *helpScene);
 		void update();
 		void draw();
 	

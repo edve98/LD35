@@ -22,7 +22,7 @@ class MenuScene : public Scene{
 		LoseScene *loseScene;
 		WinScene *winScene;
 		
-		PlayScene *playScene = new PlayScene(game, loseScene, winScene);
+		PlayScene *playScene = new PlayScene(game, loseScene, winScene, helpScene);
 		int highlightedMenuItem = 0;
 		
 		MenuScene(Game *gamep, HelpScene *helpScene, LoseScene *loseScene, WinScene *winScene);
